@@ -6,15 +6,15 @@ namespace MM
     {
         const char c1 = '-';
         const char c2 = '*';
+
         static void Main(string[] args)
         {
             int N;
 
-
             while (true)
             {
                 Console.Write("N = ");
-                if (int.TryParse(Console.ReadLine(), out N) == false)
+                if (!int.TryParse(Console.ReadLine(), out N))
                 {
                     Console.WriteLine("Invalid value! Try again!");
                     continue;
@@ -29,58 +29,58 @@ namespace MM
             }
 
             int n = N;
-            int a; //----
-            int b = n; //****
-            int c = n; //----
+            int a = n; // ****
+            int b = n; // ----
             int limit = N / 2 + 1;
-            int i;
+
+            // 1st 1/2 rows
             for (; n >= limit; n--)
             {
-                //a = n;
+                // 1st M
                 PrintSymbol(c1, n);
-                PrintSymbol(c2, b);
-                PrintSymbol(c1, c);
-                PrintSymbol(c2, b);
+                PrintSymbol(c2, a);
+                PrintSymbol(c1, b);
+                PrintSymbol(c2, a);
                 PrintSymbol(c1, n);
 
-                //second part
+                // 2nd M
                 PrintSymbol(c1, n);
-                PrintSymbol(c2, b);
-                PrintSymbol(c1, c);
-                PrintSymbol(c2, b);
+                PrintSymbol(c2, a);
+                PrintSymbol(c1, b);
+                PrintSymbol(c2, a);
                 PrintSymbol(c1, n);
                 Console.WriteLine();
-                b += 2;
-                c -= 2;
+                a += 2;
+                b -= 2;
             }
-            c = b - 2;
-            b = 1;
 
+            b = a - 2;
+            a = 1;
+            // 2nd 1/2 rows
             for (; n >= 0; n--)
             {
+                // 1st M
                 PrintSymbol(c1, n);
                 PrintSymbol(c2, N);
-                PrintSymbol(c1, b);
-                PrintSymbol(c2, c);
-                PrintSymbol(c1, b);
+                PrintSymbol(c1, a);
+                PrintSymbol(c2, b);
+                PrintSymbol(c1, a);
                 PrintSymbol(c2, N);
                 PrintSymbol(c1, n);
 
-                //second part
+                // 2nd M
                 PrintSymbol(c1, n);
                 PrintSymbol(c2, N);
-                PrintSymbol(c1, b);
-                PrintSymbol(c2, c);
-                PrintSymbol(c1, b);
+                PrintSymbol(c1, a);
+                PrintSymbol(c2, b);
+                PrintSymbol(c1, a);
                 PrintSymbol(c2, N);
                 PrintSymbol(c1, n);
                 Console.WriteLine();
 
-                b += 2;
-                c -= 2;
+                a += 2;
+                b -= 2;
             }
-
-
         }
 
         private static void PrintSymbol(char c, int count)
@@ -90,7 +90,5 @@ namespace MM
                 Console.Write(c);
             }
         }
-
-
     }
 }
